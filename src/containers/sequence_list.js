@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
 // react-redux is the glue between the two libraries; makes "connect" function available
 import { connect } from 'react-redux';
-import { selectSequence } from '../actions.index';
+import { selectSequence } from '../actions/index';
 import { bindActionCreators } from 'redux';
 
 class SequenceList extends Component {
   renderList() {
     return this.props.sequences.map((sequence) => {
       return (
-        <li key={sequence.title} className="list-group-item">{sequence.title}</li>
+        <li
+          key={sequence.title}
+          onClick={() => this.props.selectSequence(sequence)}
+          className="list-group-item">
+          {sequence.title}
+        </li>
       );
     });
   }
